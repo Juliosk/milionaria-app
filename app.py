@@ -13,9 +13,9 @@ def carregar_dados():
     url = "https://loteriascaixa-api.herokuapp.com/api/maismilionaria"
     df = pd.read_json(url)
     df = pd.json_normalize(df["data"])
-    df = df[["concurso", "numeros", "trevos"]]
+    df = df[["concurso", "dezenas", "trevos"]]
     df = df.dropna()
-    df["numeros"] = df["numeros"].apply(lambda x: list(map(int, x)))
+    df["dezenas"] = df["dezenas"].apply(lambda x: list(map(int, x)))
     df["trevos"] = df["trevos"].apply(lambda x: list(map(int, x)))
     return df
 
@@ -25,7 +25,7 @@ st.title("🎲 Análise Interativa da +Milionária")
 st.markdown("Analise frequências, padrões e obtenha previsões com base nos concursos mais recentes.")
 
 # Frequência total dos números
-numeros = df["numeros"].explode()
+numeros = df["dezenas"].explode()
 freq_numeros = numeros.value_counts().sort_index()
 
 # Frequência total dos trevos
