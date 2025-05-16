@@ -14,12 +14,20 @@ def carregar_dados():
     url = "https://loteriascaixa-api.herokuapp.com/api/mais_milionaria"
     response = requests.get(url)
     data = response.json()
-    df = pd.json_normalize(data["data"])
-    df = df[["concurso", "dezenas", "trevos"]]
-    df = df.dropna()
-    df["dezenas"] = df["dezenas"].apply(lambda x: list(map(int, x)))
-    df["trevos"] = df["trevos"].apply(lambda x: list(map(int, x)))
-    return df
+
+    # DEBUG: visualizar a resposta da API
+    st.write("Resposta da API:", data)
+
+    if "data" in data:
+        df = pd.json_normalize(data["data"])
+        df = df[["concurso", "dezenas", "trevos"]]
+        df = df.dropna()
+        df["dezenas"] = df["dezenas"].apply(lambda x: list(map(int, x)))
+        df["trevos"] = df["trevos"].apply(lambda x: list(map(int, x)))
+        return df
+    else:
+        st.error("Erro: chave 'data' não encontrada na resposta da API.")
+        return pd.DataFrame(columns=["concurso", "dezenas", "trevos"])
 
 df = carregar_dados()
 
