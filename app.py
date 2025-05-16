@@ -11,7 +11,7 @@ st.set_page_config(page_title="Análise +Milionária", layout="wide")
 
 @st.cache_data
 def carregar_dados():
-    url = "https://loteriascaixa-api.herokuapp.com/api/mais_milionaria"
+    url = "https://loteriascaixa-api.herokuapp.com/api/maismilionaria"
     response = requests.get(url)
     data = response.json()
 
