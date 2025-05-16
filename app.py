@@ -1,18 +1,20 @@
-
 import pandas as pd
 import streamlit as st
 import matplotlib.pyplot as plt
 import seaborn as sns
 from itertools import combinations
 import random
+import json
+import requests
 
 st.set_page_config(page_title="Análise +Milionária", layout="wide")
 
 @st.cache_data
 def carregar_dados():
-    url = "https://loteriascaixa-api.herokuapp.com/api/maismilionaria"
-    df = pd.read_json(url)
-    df = pd.json_normalize(df["data"])
+    url = "https://loteriascaixa-api.herokuapp.com/api/mais_milionaria"
+    response = requests.get(url)
+    data = response.json()
+    df = pd.json_normalize(data["data"])
     df = df[["concurso", "dezenas", "trevos"]]
     df = df.dropna()
     df["dezenas"] = df["dezenas"].apply(lambda x: list(map(int, x)))
