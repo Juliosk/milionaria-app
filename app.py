@@ -520,7 +520,7 @@ def main():
     
     with col2:
         st.markdown('<div class="card">', unsafe_allow_html=True)
-        st.markdown("<h2>⚡ Stats</h2>", unsafe_allow_html=True)
+        st.markdown("<h2>⚡ Status</h2>", unsafe_allow_html=True)
         
         num_concursos = len(df)
         
@@ -531,36 +531,9 @@ def main():
             st.markdown(f"""
             <p>Total de concursos: <span style="color:#00ffcc;font-weight:bold;">{num_concursos}</span></p>
             <p>Número mais frequente: <span style="color:#00ffcc;font-weight:bold;">{num_mais_comum}</span></p>
-            <p>Número mais frequente: <span style="color:#00ffcc;font-weight:bold;">{num_mais_comum}</span></p>
+            
             
             """, unsafe_allow_html=True)
-            
- # ⬇️ Aqui a parte da premiação genérica
- #   if "premiacoes" in ultimo_concurso and isinstance(ultimo_concurso["premiacoes"], list):
-  #      premiacoes = pd.DataFrame(ultimo_concurso["premiacoes"])
-  #      premiacoes["valorPremio"] = premiacoes["valorPremio"].apply(
-  #          lambda x: f"R$ {x:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
-  #      )
-  #      premiacoes.rename(columns={
-  #          "descricao": "Faixa",
-  #          "ganhadores": "Ganhadores",
-  #          "valorPremio": "Prêmio"
-  #      }, inplace=True)
-
-  #      st.markdown("<hr style='border-color:rgba(0,204,255,0.3);margin:10px 0;'>", unsafe_allow_html=True)
-  #      st.markdown("<h4 style='color:#00ccff;'>Premiação</h4>", unsafe_allow_html=True)
-
-   #     for _, row in premiacoes.iterrows():
-   #         st.markdown(f"""
-   #         <p><b>{row['Faixa']}:</b> {row['Ganhadores']} ganhador(es) - <span style="color:#00ffcc;">{row['Prêmio']}</span></p>
-   #         """, unsafe_allow_html=True)
-
-   # st.markdown("</div>", unsafe_allow_html=True)
-
-
-        
-        
-        
         # Métricas adicionais específicas
         if loteria_selecionada == "maismilionaria" and "trevos" in df.columns:
             trevos = df["trevos"].explode()
