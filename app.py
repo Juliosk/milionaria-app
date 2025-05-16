@@ -528,14 +528,13 @@ def main():
         if "dezenas" in df.columns:
             numeros = df["dezenas"].explode()
             num_mais_comum = numeros.value_counts().idxmax()
-            ganhadores = df["
             st.markdown(f"""
             <p>Total de concursos: <span style="color:#00ffcc;font-weight:bold;">{num_concursos}</span></p>
             <p>Número mais frequente: <span style="color:#00ffcc;font-weight:bold;">{num_mais_comum}</span></p>
             <p>Número mais frequente: <span style="color:#00ffcc;font-weight:bold;">{num_mais_comum}</span></p>
             
             """, unsafe_allow_html=True)
-
+            
 # Exibe premiações de forma genérica (para qualquer loteria com essa chave)
 if "premiacoes" in ultimo_concurso and isinstance(ultimo_concurso["premiacoes"], list):
     premiacoes = pd.DataFrame(ultimo_concurso["premiacoes"])
