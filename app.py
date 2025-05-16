@@ -535,24 +535,29 @@ def main():
             """, unsafe_allow_html=True)
       
 
-    # Mostra a premiação do último concurso (se disponível)
-    if loteria_selecionada == "timemania" and "premiacoes" in ultimo_concurso:
-        st.markdown("<hr style='border-color:rgba(0,204,255,0.3);margin:10px 0;'>", unsafe_allow_html=True)
-        st.markdown("<h4 style='color:#00ccff;'>Premiação</h4>", unsafe_allow_html=True)
+    # Exibe premiações de forma genérica (para qualquer loteria com essa chave)
+if "premiacoes" in ultimo_concurso and isinstance(ultimo_concurso["premiacoes"], list):
+    premiacoes = pd.DataFrame(ultimo_concurso["premiacoes"])
 
-        premiacoes = pd.DataFrame(ultimo_concurso["premiacoes"])
-        premiacoes["valorPremio"] = premiacoes["valorPremio"].apply(lambda x: f"R$ {x:,.2f}".replace(",", "X").replace(".", ",").replace("X", "."))
-        premiacoes.rename(columns={
-            "descricao": "Faixa",
-            "ganhadores": "Ganhadores",
-            "valorPremio": "Prêmio"
-        }, inplace=True)
+    # Formata valor como moeda brasileira
+    premiacoes["valorPremio"] = premiacoes["valorPremio"].apply(
+        lambda x: f"R$ {x:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+    )
 
-        # Mostra como HTML em lista compacta
-        for _, row in premiacoes.iterrows():
-            st.markdown(f"""
-            <p><b>{row['Faixa']}:</b> {row['Ganhadores']} ganhador(es) - <span style="color:#00ffcc;">{row['Prêmio']}</span></p>
-            """, unsafe_allow_html=True)
+    premiacoes.rename(columns={
+        "descricao": "Faixa",
+        "ganhadores": "Ganhadores",
+        "valorPremio": "Prêmio"
+    }, inplace=True)
+
+    st.markdown("<hr style='border-color:rgba(0,204,255,0.3);margin:10px 0;'>", unsafe_allow_html=True)
+    st.markdown("<h4 style='color:#00ccff;'>Premiação</h4>", unsafe_allow_html=True)
+
+    # Exibe como lista estilizada
+    for _, row in premiacoes.iterrows():
+        st.markdown(f"""
+        <p><b>{row['Faixa']}:</b> {row['Ganhadores']} ganhador(es) - <span style="color:#00ffcc;">{row['Prêmio']}</span></p>
+        """, unsafe_allow_html=True)
 
 
         
