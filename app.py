@@ -18,16 +18,17 @@ def carregar_dados():
     # DEBUG: visualizar a resposta da API
     st.write("Resposta da API:", data)
 
-    if "data" in data:
-        df = pd.json_normalize(data["data"])
-        df = df[["concurso", "dezenas", "trevos"]]
-        df = df.dropna()
-        df["dezenas"] = df["dezenas"].apply(lambda x: list(map(int, x)))
-        df["trevos"] = df["trevos"].apply(lambda x: list(map(int, x)))
-        return df
+    if isinstance(data, list):
+        df = pd.json_normalize(data)
     else:
-        st.error("Erro: chave 'data' não encontrada na resposta da API.")
+        st.error("Erro: Estrutura inesperada na resposta da API.")
         return pd.DataFrame(columns=["concurso", "dezenas", "trevos"])
+
+    df = df[["concurso", "dezenas", "trevos"]]
+    df = df.dropna()
+    df["dezenas"] = df["dezenas"].apply(lambda x: list(map(int, x)))
+    df["trevos"] = df["trevos"].apply(lambda x: list(map(int, x)))
+    return df
 
 df = carregar_dados()
 
