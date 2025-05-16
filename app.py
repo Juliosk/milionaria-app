@@ -10,7 +10,7 @@ st.set_page_config(page_title="Análise +Milionária", layout="wide")
 
 @st.cache_data
 def carregar_dados():
-    url = "https://loteriascaixa-api.herokuapp.com/api/mais_milionaria"
+    url = "https://loteriascaixa-api.herokuapp.com/api/maismilionaria"
     df = pd.read_json(url)
     df = pd.json_normalize(df["data"])
     df = df[["concurso", "numeros", "trevos"]]
