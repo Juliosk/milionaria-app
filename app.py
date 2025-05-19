@@ -145,7 +145,7 @@ def loading_message(message="Carregando dados..."):
 
 @st.cache_data
 def carregar_dados():
-    url = "https://loteriascaixa-api.herokuapp.com/api/megasena"
+    url = "https://loteriascaixa-api.herokuapp.com/api/maismilionaria"
     response = requests.get(url)
     data = response.json()
     
