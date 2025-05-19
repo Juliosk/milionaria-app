@@ -191,7 +191,7 @@ def carregar_dados(loteria="maismilionaria"):
                     df = df.dropna(subset=["concurso", "dezenas"])
                     df["dezenas"] = df["dezenas"].apply(lambda x: list(map(int, x)))
                     df["dezenas_2"] = df["dezenas_2"].apply(lambda x: list(map(int, x)))
-                    df["data"] = pd.to_datetime(df["data"], errors='coerce')
+                    #df["data"] = pd.to_datetime(df["data"], errors='coerce')
             
             elif loteria == "federal":
                 colunas = ["concurso", "data", "premios"]
