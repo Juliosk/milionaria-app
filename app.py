@@ -139,6 +139,10 @@ def loading_message(message="Carregando dados..."):
         </div>
         """, unsafe_allow_html=True)
 
+
+        
+        return container
+
 @st.cache_data
 def carregar_dados():
     url = "https://loteriascaixa-api.herokuapp.com/api/megasena"
@@ -153,8 +157,6 @@ def carregar_dados():
 # Carregar dados da API
 dados = carregar_dados()
 
-        
-        return container
 
 # Função para carregar dados da API com cache
 @st.cache_data(ttl=3600)
