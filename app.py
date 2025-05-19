@@ -161,7 +161,7 @@ def carregar_dados(loteria="maismilionaria"):
             
             # Verifica e trata colunas específicas para cada tipo de loteria
             if loteria == "maismilionaria":
-                colunas = ["concurso", "dezenas", "trevos"]
+                colunas = ["concurso", "dezenas", "trevos","data"]
                 df = df[colunas]
                 df = df.dropna()
                 df["dezenas"] = df["dezenas"].apply(lambda x: list(map(int, x)))
