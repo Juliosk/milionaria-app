@@ -510,8 +510,8 @@ except Exception:
             
             
             #st.markdown(f"<p style='color:#00ffcc;'>Concurso <b>{int(ultimo_concurso['concurso'])}</b> | {data_formatada}</p>", unsafe_allow_html=True)
-        else:
-            st.markdown(f"<p style='color:#00ffcc;'>Concurso <b>{int(ultimo_concurso['concurso'])}</b></p>", unsafe_allow_html=True)
+        #else:
+         #   st.markdown(f"<p style='color:#00ffcc;'>Concurso <b>{int(ultimo_concurso['concurso'])}</b></p>", unsafe_allow_html=True)
         
         if "dezenas" in df.columns:
             st.markdown("<h3>Números Sorteados</h3>", unsafe_allow_html=True)
