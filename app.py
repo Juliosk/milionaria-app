@@ -143,19 +143,6 @@ def loading_message(message="Carregando dados..."):
         
         return container
 
-@st.cache_data
-def carregar_dados():
-    url = f"https://loteriascaixa-api.herokuapp.com/api/{loteria}"
-    response = requests.get(url)
-    data = response.json()
-    
-    # Exibe toda a estrutura para debug
-    st.write("Dados do concurso:", data)
-    
-    return data
-
-# Carregar dados da API
-dados = carregar_dados()
 
 
 # Função para carregar dados da API com cache
