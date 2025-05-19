@@ -509,7 +509,7 @@ except Exception:
 
             
             
-            st.markdown(f"<p style='color:#00ffcc;'>Concurso <b>{int(ultimo_concurso['concurso'])}</b> | {data_formatada}</p>", unsafe_allow_html=True)
+            #st.markdown(f"<p style='color:#00ffcc;'>Concurso <b>{int(ultimo_concurso['concurso'])}</b> | {data_formatada}</p>", unsafe_allow_html=True)
         else:
             st.markdown(f"<p style='color:#00ffcc;'>Concurso <b>{int(ultimo_concurso['concurso'])}</b></p>", unsafe_allow_html=True)
         
