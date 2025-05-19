@@ -116,8 +116,8 @@ st.markdown("""
 
 # Lista de loterias disponíveis
 LOTERIAS = [
-    "maismilionaria",
     "megasena",
+    "maismilionaria",
     "lotofacil",
     "quina",
     "lotomania",
@@ -138,6 +138,22 @@ def loading_message(message="Carregando dados..."):
             <div class="loading"></div>
         </div>
         """, unsafe_allow_html=True)
+
+@st.cache_data
+def carregar_dados():
+    url = "https://loteriascaixa-api.herokuapp.com/api/megasena"
+    response = requests.get(url)
+    data = response.json()
+    
+    # Exibe toda a estrutura para debug
+    st.write("Dados do concurso:", data)
+    
+    return data
+
+# Carregar dados da API
+dados = carregar_dados()
+
+        
         return container
 
 # Função para carregar dados da API com cache
