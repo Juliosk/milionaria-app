@@ -498,7 +498,17 @@ def main():
         """, unsafe_allow_html=True)
         
         if "data" in df.columns:
-            data_formatada = ultimo_concurso["data"].strftime("%d/%m/%Y") if pd.notna(ultimo_concurso["data"]) else "Data não disponível"
+            #data_formatada = ultimo_concurso["data"].strftime("%d/%m/%Y") if pd.notna(ultimo_concurso["data"]) else "Data não disponível"
+            from datetime import datetime
+
+data_bruta = ultimo_concurso.get("data")
+try:
+    data_formatada = datetime.strptime(data_bruta, "%d/%m/%Y").strftime("%d/%m/%Y") if pd.notna(data_bruta) else "Data não disponível"
+except Exception:
+    data_formatada = "Data inválida"
+
+            
+            
             st.markdown(f"<p style='color:#00ffcc;'>Concurso <b>{int(ultimo_concurso['concurso'])}</b> | {data_formatada}</p>", unsafe_allow_html=True)
         else:
             st.markdown(f"<p style='color:#00ffcc;'>Concurso <b>{int(ultimo_concurso['concurso'])}</b></p>", unsafe_allow_html=True)
