@@ -185,7 +185,7 @@ def carregar_dados(loteria="maismilionaria"):
                     df["data"] = pd.to_datetime(df["data"], errors='coerce')
             
             elif loteria == "duplasena":
-                colunas = ["concurso", "data", "dezenas", "dezenas_2"]
+                colunas = ["concurso", "dezenas", "dezenas_2"]
                 if all(col in df.columns for col in colunas):
                     df = df[colunas]
                     df = df.dropna(subset=["concurso", "dezenas"])
