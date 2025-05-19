@@ -161,7 +161,7 @@ def carregar_dados(loteria="maismilionaria"):
             
             # Verifica e trata colunas específicas para cada tipo de loteria
             if loteria == "maismilionaria":
-                colunas = ["concurso", "dezenas", "trevos","data"]
+                colunas = ["concurso", "dezenas", "trevos"]
                 df = df[colunas]
                 df = df.dropna()
                 df["dezenas"] = df["dezenas"].apply(lambda x: list(map(int, x)))
@@ -463,7 +463,7 @@ def main():
         st.markdown("""
         <div style="margin-top:30px;text-align:center;padding:15px 0;border-top:1px solid rgba(0,204,255,0.2);">
             <p style="color:#999;font-size:12px;">
-                VERSÃO 2025.1 | ANALYTICS ENGINE
+                VERSÃO 2025.1 | ANALYTICS JULIOSK
             </p>
         </div>
         """, unsafe_allow_html=True)
